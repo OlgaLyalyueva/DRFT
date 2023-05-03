@@ -73,3 +73,25 @@ class GetListSnippets(APITestCase):
         self.assertEqual(response.json()['results'][0]['language'], 'python')
         self.assertEqual(response.json()['results'][0]['style'], 'friendly')
         self.assertEqual(response.json()['results'][0]['owner'], user.username)
+
+
+class AddSnippets(APITestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create(username='TestUser1',
+                            email='test@tset.test')
+        user.set_password('1234567890')
+        user.save()
+
+        user = User.objects.create(username='TestUser2',
+                                   email='test2@tset.test')
+        user.set_password('1234567890')
+        user.save()
+
+    def test_add_snippet_unauthorized_user(self):
+        r = c.get('/snippets/')
+        self.assertEqual(r.status_code, status.HTTP_200_OK)
+        data = {'code': 'try to create a spippet as unauthorized user'}
+        response = c.post('/snippets/', data=data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
