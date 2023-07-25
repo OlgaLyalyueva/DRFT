@@ -3,12 +3,11 @@ from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 
-from DRFTutorial.models import Snippet
-
+from app.models import Snippet
 c = APIClient()
 
 
-class GetListUsers(APITestCase):
+class GetListUsersTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
@@ -31,7 +30,7 @@ class GetListUsers(APITestCase):
         self.assertEqual(len(response.json()['results'][0]['snippets']), 0)
 
 
-class GetListSnippets(APITestCase):
+class GetListSnippetsTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
@@ -75,7 +74,7 @@ class GetListSnippets(APITestCase):
         self.assertEqual(response.json()['results'][0]['owner'], user.username)
 
 
-class AddSnippets(APITestCase):
+class AddSnippetsTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):

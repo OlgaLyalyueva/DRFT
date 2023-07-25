@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from DRFTutorial import views
+from app import views
 
 # Create a router and register our ViewSets with it.
 router = DefaultRouter()

@@ -1,8 +1,8 @@
-from DRFTutorial.models import Snippet
+from app.models import Snippet
 from django.contrib.auth.models import User
-from DRFTutorial.serializers import SnippetSerializer, UserSerializer
+from app.serializers import SnippetSerializer, UserSerializer
 from rest_framework import permissions
-from DRFTutorial.permissions import IsOwnerOrReadOnly
+from app.permissions import IsOwnerOrReadOnly
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from rest_framework import renderers
